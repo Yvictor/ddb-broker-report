@@ -1,0 +1,30 @@
+db = database("dfs://DailyTWSEBrokerReport", VALUE, 2015.01.01..2015.01.02)
+
+DailyTWSEBrokerReport = table(
+    array(DATE, 0) as Date,
+    array(SYMBOL, 0) as SecurityCode,
+    array(SYMBOL, 0) as BrokerId,
+    array(SYMBOL, 0) as BrokerName,
+    array(DOUBLE, 0) as Price,
+    array(LONG, 0) as BuyShare,
+    array(LONG, 0) as SellShare
+)
+
+db.createPartitionedTable(DailyTWSEBrokerReport, `DailyTWSEBrokerReport, `Date)
+
+db = database("dfs://DailyTPEXBrokerReport", VALUE, 2015.01.01..2015.01.02)
+
+DailyTWSEBrokerReport = table(
+    array(DATE, 0) as Date,
+    array(SYMBOL, 0) as SecurityCode,
+    array(SYMBOL, 0) as BrokerId,
+    array(SYMBOL, 0) as BrokerName,
+    array(DOUBLE, 0) as Price,
+    array(LONG, 0) as BuyShare,
+    array(LONG, 0) as SellShare
+)
+
+db.createPartitionedTable(DailyTWSEBrokerReport, `DailyTPEXBrokerReport, `Date)
+
+DailyTWSEBrokerReport = loadTable("dfs://DailyTWSEBrokerReport", "DailyTWSEBrokerReport")
+DailyTWSEBrokerReport = loadTable("dfs://DailyTPEXBrokerReport", "DailyTPEXBrokerReport")
